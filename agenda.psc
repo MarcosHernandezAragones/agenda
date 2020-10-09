@@ -50,7 +50,7 @@ Algoritmo Ejercicio_puente
 					telefono=0;
 					Escribir "Se ha eliminado el usuario";
 				SiNo
-					Escribir "Usiario no encontrado";
+					Escribir "Usuario no encontrado";
 				Fin Si
 			5:
 				Escribir "El usuario ",nombre, " tiene el telefono ",telefono," .";
