@@ -10,6 +10,7 @@ Algoritmo Ejercicio_puente
 	telefono=0;
 	
 	Repetir
+		Escribir "Buenas";
 		Escribir"Dime lo que quieres hacer.";
 		Escribir "1 añadir un usuario";
 		Escribir "2 para editar el usuario";
@@ -27,7 +28,7 @@ Algoritmo Ejercicio_puente
 			2:
 				Escribir "Dime que usuario quieres modificar";
 				leer editar;
-				Si editar=nombre Entonces
+				Si editar==nombre Entonces
 					Escribir "Dome su nuevo numero de telefono";
 					Leer telefono;
 				SiNo
@@ -36,7 +37,7 @@ Algoritmo Ejercicio_puente
 			3:
 				Escribir "Dime que usuario quieres buscar";
 				Leer buscar;
-				Si buscar=nombre Entonces
+				Si buscar==nombre Entonces
 					Escribir "El usuario", buscar, "su telefono es ",telefono;
 				SiNo
 					Escribir "El usuario no esta registrado";
@@ -45,7 +46,7 @@ Algoritmo Ejercicio_puente
 			4:
 				Escribir "Que usuario quieres eliminar";
 				Leer eliminar;
-				Si eliminar=nombre Entonces
+				Si eliminar==nombre Entonces
 					nombre="";
 					telefono=0;
 					Escribir "Se ha eliminado el usuario";
@@ -57,4 +58,5 @@ Algoritmo Ejercicio_puente
 		Fin Segun
 		
 	Hasta Que i=6
+	Escribir "Adios guapo";
 FinAlgoritmo
