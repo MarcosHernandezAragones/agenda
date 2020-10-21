@@ -46,6 +46,12 @@ SubProceso edita(vNombres,j,nombre,telf,cont,tam)
 	FinPara
 FinSubProceso
 
+SubProceso del()
+	
+FinSubProceso
+
+
+
 Algoritmo proyecto
 	
 	Definir vNombres Como Caracter;
@@ -102,6 +108,7 @@ Algoritmo proyecto
 						Fin Si
 					FinSi
 				Fin Para
+				del(vNombres,tam,j,);
 				
 			4:	
 				//----------------------------------------------------------------------------------Buscar
