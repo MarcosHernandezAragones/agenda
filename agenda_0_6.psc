@@ -46,8 +46,61 @@ SubProceso edita(vNombres,j,nombre,telf,cont,tam)
 	FinPara
 FinSubProceso
 
-SubProceso del()
+SubProceso del(vNombres,tam,j,nombre,telf,eliminar)
+	Escribir "Que empleado quieres borrar";
+	leer eliminar;
 	
+	Para i=0 Hasta tam -1 Con Paso 1 Hacer
+		si (vNombres[i]<> "") Entonces
+			Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
+				Si (Subcadena(vNombres[i],j,j)==";") Entonces
+					nombre=Subcadena(vNombres[i],0,j-1);
+					telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
+				Fin Si
+			Fin Para
+			Si eliminar==nombre Entonces
+				vNombres[i]="";
+			Fin Si
+		FinSi
+	Fin Para
+FinSubProceso
+
+SubProceso bus(nombusqueda,tam,j,nombre,telf,vNombres)
+	Escribir "Que empleado quieres buscar";
+	leer nombusqueda;
+	
+	Para i=0 Hasta tam -1 Con Paso 1 Hacer
+		si (vNombres[i]<>"") Entonces
+			nombre="";
+			telf="";
+			
+			Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
+				Si (Subcadena(vNombres[i],j,j)==";") Entonces
+					nombre=Subcadena(vNombres[i],0,j-1);
+					telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
+				Fin Si
+			Fin Para
+			Si ((nombusqueda==nombre) o (nombusqueda==telf)) Entonces
+				Escribir nombre + " " + telf;
+			Fin Si
+			
+		FinSi
+	Fin Para
+FinSubProceso
+
+SubProceso mostra(vNombres,tam,j,nombre,telf)
+	Para i=0 Hasta tam -1 Con Paso 1 Hacer
+		si (vNombres[i]<> "") Entonces
+			Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
+				Si (Subcadena(vNombres[i],j,j)==";") Entonces
+					nombre=Subcadena(vNombres[i],0,j-1);
+					telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
+				Fin Si
+			Fin Para
+			
+			Escribir nombre + " " + telf;
+		FinSi
+	Fin Para
 FinSubProceso
 
 
@@ -92,60 +145,13 @@ Algoritmo proyecto
 				edita(vNombres,j,nombre,telf,cont,tam);
 			3:
 				//----------------------------------------------------------------------------------borrar
-				Escribir "Que empleado quieres borrar";
-				leer eliminar;
-				
-				Para i=0 Hasta tam -1 Con Paso 1 Hacer
-					si (vNombres[i]<> "") Entonces
-						Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
-							Si (Subcadena(vNombres[i],j,j)==";") Entonces
-								nombre=Subcadena(vNombres[i],0,j-1);
-								telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
-							Fin Si
-						Fin Para
-						Si eliminar==nombre Entonces
-							vNombres[i]="";
-						Fin Si
-					FinSi
-				Fin Para
-				del(vNombres,tam,j,);
-				
+				del(vNombres,tam,j,nombre,telf,eliminar);
 			4:	
 				//----------------------------------------------------------------------------------Buscar
-				Escribir "Que empleado quieres buscar";
-				leer nombusqueda;
-				
-				Para i=0 Hasta tam -1 Con Paso 1 Hacer
-					si (vNombres[i]<>"") Entonces
-						nombre="";
-						telf="";
-						
-						Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
-							Si (Subcadena(vNombres[i],j,j)==";") Entonces
-								nombre=Subcadena(vNombres[i],0,j-1);
-								telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
-							Fin Si
-						Fin Para
-						Si ((nombusqueda==nombre) o (nombusqueda==telf)) Entonces
-							Escribir nombre + " " + telf;
-						Fin Si
-						
-					FinSi
-				Fin Para
+				bus(nombusqueda,tam,j,nombre,telf,vNombres);
 			5:	
 				//----------------------------------------------------------------------------------Mostrar todos
-				Para i=0 Hasta tam -1 Con Paso 1 Hacer
-					si (vNombres[i]<> "") Entonces
-						Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
-							Si (Subcadena(vNombres[i],j,j)==";") Entonces
-								nombre=Subcadena(vNombres[i],0,j-1);
-								telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
-							Fin Si
-						Fin Para
-						
-						Escribir nombre + " " + telf;
-					FinSi
-				Fin Para
+				mostra(vNombres,tam,j,nombre,telf);
 			6:
 				//----------------------------------------------------------------------------------Salir
 				interruptor=falso;
