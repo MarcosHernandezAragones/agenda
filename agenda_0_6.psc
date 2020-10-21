@@ -1,3 +1,51 @@
+SubProceso añade(tam,vNombres)
+	Definir i Como Entero;
+	Definir nombre,telf,cont Como Caracter;
+	
+	Escribir "Dime el nombre del empleado";
+	leer nombre;
+	Escribir "Dime el telefono del empleado";
+	leer telf;
+	cont= nombre+";"+telf;
+	
+	Para i=0 Hasta tam -1 Con Paso 1 Hacer
+		si (vNombres[i]== "") Entonces
+			vNombres[i]= cont ;
+			i=tam;
+		FinSi
+	Fin Para
+FinSubProceso
+
+SubProceso edita(vNombres,j,nombre,telf,cont,tam)
+	Definir i Como Entero;
+	Definir editar Como Caracter;
+	
+	Escribir "Que empleado quieres editar";
+	leer editar;
+	
+	Para i=0 Hasta tam -1 Con Paso 1 Hacer
+		si (vNombres[i]<> "") Entonces
+			Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
+				Si (Subcadena(vNombres[i],j,j)==";") Entonces
+					nombre=Subcadena(vNombres[i],0,j-1);
+					telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
+				Fin Si
+			Fin Para
+			
+			si editar=nombre Entonces
+				vNombres[i]="";
+				escribir "Dime el nuevo nombre";
+				leer nombre;
+				Escribir "Dime el nuevo telefono";
+				Leer telf;
+				cont= nombre+";"+telf;
+				vNombres[i]= cont;
+			FinSi
+			
+		FinSi
+	FinPara
+FinSubProceso
+
 Algoritmo proyecto
 	
 	Definir vNombres Como Caracter;
@@ -31,43 +79,32 @@ Algoritmo proyecto
 		Leer aux;
 		Segun aux Hacer
 			1:
-				Escribir "Dime el nombre del empleado";
-				leer nombre;
-				Escribir "Dime el telefono del empleado";
-				leer telf;
-				cont= nombre+";"+telf;
-				Para i=0 Hasta tam -1 Con Paso 1 Hacer
-					si (vNombres[i]== "") Entonces
-						vNombres[i]= cont ;
-						i=tam;
-					FinSi
-				Fin Para
+				//--------------------------------------------------------------------------Añadir
+				añade(tam,vNombres);
 			2:
-				Escribir "Que empleado quieres editar";
-				leer editar;
-				
-				Para i=0 Hasta tam -1 Con Paso 1 Hacer
-					si (vNombres[i]<> "") Entonces
-						si editar=nombre Entonces
-							escribir "Dime el nuevo nombre";
-							leer nombre;
-						SiNo
-							escribir "Ese usuario no existe";
-						FinSi
-						i=tam;
-					FinSi
-				Fin Para
+				//----------------------------------------------------------------------------------editar
+				edita(vNombres,j,nombre,telf,cont,tam);
 			3:
+				//----------------------------------------------------------------------------------borrar
 				Escribir "Que empleado quieres borrar";
 				leer eliminar;
 				
 				Para i=0 Hasta tam -1 Con Paso 1 Hacer
 					si (vNombres[i]<> "") Entonces
-						vNombres[i]= " " ;
-						i=tam;
+						Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
+							Si (Subcadena(vNombres[i],j,j)==";") Entonces
+								nombre=Subcadena(vNombres[i],0,j-1);
+								telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
+							Fin Si
+						Fin Para
+						Si eliminar==nombre Entonces
+							vNombres[i]="";
+						Fin Si
 					FinSi
 				Fin Para
+				
 			4:	
+				//----------------------------------------------------------------------------------Buscar
 				Escribir "Que empleado quieres buscar";
 				leer nombusqueda;
 				
@@ -89,6 +126,7 @@ Algoritmo proyecto
 					FinSi
 				Fin Para
 			5:	
+				//----------------------------------------------------------------------------------Mostrar todos
 				Para i=0 Hasta tam -1 Con Paso 1 Hacer
 					si (vNombres[i]<> "") Entonces
 						Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
@@ -102,7 +140,8 @@ Algoritmo proyecto
 					FinSi
 				Fin Para
 			6:
-					interruptor=falso;
+				//----------------------------------------------------------------------------------Salir
+				interruptor=falso;
 		Fin Segun
 	Hasta Que interruptor=falso;
 	
