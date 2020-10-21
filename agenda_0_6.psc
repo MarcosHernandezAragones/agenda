@@ -22,12 +22,12 @@ Algoritmo proyecto
 	Escribir "Bienvenid@ a la aplicación ;)";
 	
 	Repetir
-		Escribir "Pulsa la tecla 1 para añadir un empleado junto a su telefono.";
-		Escribir "Pulsa la tecla 2 para editar un empleado.";
-		Escribir "Pulsa la tecla 3 para eliminar un empleado.";
-		Escribir "Pulsa la tecla 4 para buscar un empleado.";
-		Escribir "Pulsa la tecla 5 para mostrar todos los empleados con su teléfono.";
-		Escribir "Pulsa la tecla 6 para salir de la aplicación.";
+		Escribir "1 para añadir un empleado junto a su telefono.";
+		Escribir "2 para editar un empleado.";
+		Escribir "3 para eliminar un empleado.";
+		Escribir "4 para buscar un empleado.";
+		Escribir "5 para mostrar todos los empleados con su teléfono.";
+		Escribir "6 para salir de la aplicación.";
 		Leer aux;
 		Segun aux Hacer
 			1:
@@ -72,23 +72,35 @@ Algoritmo proyecto
 				leer nombusqueda;
 				
 				Para i=0 Hasta tam -1 Con Paso 1 Hacer
-					si (vNombres[i]== "") Entonces
-						vNombres[i]= cont ;
+					si (vNombres[i]<>"") Entonces
+						nombre="";
+						telf="";
 						
-						Para j=0 Hasta Longitud(Subcadena(vNombres[i],j,j))-1 Con Paso 1 Hacer
-							Escribir vNombres[i];
-							j=tam;
+						Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
+							Si (Subcadena(vNombres[i],j,j)==";") Entonces
+								nombre=Subcadena(vNombres[i],0,j-1);
+								telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
+							Fin Si
 						Fin Para
+						Si ((nombusqueda==nombre) o (nombusqueda==telf)) Entonces
+							Escribir nombre + " " + telf;
+						Fin Si
 						
-						i=tam;
 					FinSi
 				Fin Para
 			5:	
 				Para i=0 Hasta tam -1 Con Paso 1 Hacer
-				si (vNombres[i]<> "") Entonces
-					Escribir vNombres[i];
-				FinSi
-			Fin Para
+					si (vNombres[i]<> "") Entonces
+						Para j=0 Hasta Longitud(vNombres[i])-1 Con Paso 1 Hacer
+							Si (Subcadena(vNombres[i],j,j)==";") Entonces
+								nombre=Subcadena(vNombres[i],0,j-1);
+								telf=Subcadena(vNombres[i],j+1,Longitud(vNombres[i])-1);
+							Fin Si
+						Fin Para
+						
+						Escribir nombre + " " + telf;
+					FinSi
+				Fin Para
 			6:
 					interruptor=falso;
 		Fin Segun
