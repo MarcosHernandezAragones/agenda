@@ -85,7 +85,7 @@ Algoritmo proyecto
 	editar="";
 	j=0;
 	
-	Escribir "Bienvenid@ a la aplicación ;)";
+	Escribir "Bienvenido a la aplicación.";
 	
 	Repetir
 		Escribir "1 para añadir un empleado junto a su telefono.";
